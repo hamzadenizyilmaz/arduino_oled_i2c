@@ -1,0 +1,30 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128 // OLED ekran genişliği, kullanılan modele göre değişebilir
+#define SCREEN_HEIGHT 64 // OLED ekran yüksekliği, kullanılan modele göre değişebilir
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+void setup() {
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C); // OLED adresini kullanarak iletişimi başlatın
+
+  display.clearDisplay(); // Ekranı temizleyin
+  display.setTextColor(WHITE); // Beyaz yazı rengini ayarlayın
+
+  // İstediğiniz metni yazdırabilirsiniz
+  display.setTextSize(2);
+  display.setCursor(10, 10);
+  display.println("Merhaba!");
+
+  display.setTextSize(1);
+  display.setCursor(0, 30);
+  display.println("Arduino OLED I2C");
+
+  display.display(); // Ekranı güncelleyin
+}
+
+void loop() {
+  // Döngüye gerek yok, sadece bir kez çalıştırılacak kodları setup() fonksiyonunda yazdık
+}
